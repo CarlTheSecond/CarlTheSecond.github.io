@@ -977,13 +977,48 @@ function App() {
                   }}
                 >
                   <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                    <WorkIcon 
-                      sx={{ 
-                        color: 'primary.500',
-                        fontSize: 24,
-                        mt: 0.5,
-                      }} 
-                    />
+
+                    { job.company === 'Etch' && (
+                      <Box
+                        component="svg"
+                        viewBox="0 0 76 32"
+                        aria-hidden
+                        focusable="false"
+                        sx={{
+                          color: 'primary.500',   
+                          height: 24,             
+                          width: 'auto',          
+                          mt: 0.5,
+                          display: 'inline-block',
+                          flexShrink: 0,
+                        }}
+                      >
+                        <g>
+                          <path fill="#F06" d="M0 4L0 20 16 4z"></path>
+                          <path fill="#F06" d="M0 12L0 28 16 28z"></path>
+                          <path fill="#F66" d="M0 12L0 28 16 12z"></path>
+                        </g>
+                        <g>
+                          <path fill="#F06" d="M20 4H28V20H20z"></path>
+                          <path fill="#F06" d="M20 12L20 28 36 28z"></path>
+                          <path fill="#F66" d="M20 12L20 28 36 12z"></path>
+                        </g>
+                        <g>
+                          <path fill="#F06" d="M40 12L40 28 56 28z"></path>
+                          <path fill="#F66" d="M40 12L40 28 56 12z"></path>
+                        </g>
+                        <g>
+                          <path fill="#F06" d="M60 4H68V20H60z"></path>
+                          <path fill="#F06" d="M72 12L60 12 60 16 76 32 76 16z"></path>
+                          <path fill="#F66" d="M60 12L60 32 76 16 72 12z"></path>
+                        </g>
+                      </Box>
+                    )}
+
+                    { job.company !== 'Etch' && (
+                      <WorkIcon sx={{ color: 'primary.500', fontSize: 24, mt: 0.5, }} />
+                    )}
+
                     <Box sx={{ flex: 1 }}>
                       <Typography level="title-md" sx={{ mb: 0.5 }}>
                         {job.role}

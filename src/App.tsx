@@ -41,6 +41,8 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Sheet from '@mui/joy/Sheet';
 import avatar from './assets/avatar.jpg';
+import intimation from './assets/intimation_creative_logo.jpg';
+import fancensus from './assets/fancensuscom_logo.jpg';
 
 import { generativeDesignSystem } from './articles/generative-design-system';
 import { maintainableCode } from './articles/maintainable-code';
@@ -103,37 +105,35 @@ const workExperience: WorkExperience[] = [
   {
     company: "Etch",
     role: "Frontend Developer",
-    period: "2022 - Present",
+    period: "2021 - 2025",
     description: "Building and maintaining component libraries, transforming Figma designs into production-ready code.",
     highlights: [
       "Developed reusable component systems used across multiple projects",
-      "Collaborated with designers to ensure pixel-perfect implementations",
-      "Improved build times by 40% through optimization strategies",
-      "Mentored junior developers on React best practices"
+      "Collaborated with designers and consuming teams of our component libraries to ensure pixel-perfect implementations",
+      "Design system governance & alignment",
+      "Designed a reactive service architecture to eliminate complex prop drilling and event emitter chaining.",
+      "Extensive focus on creating accessible component systems",
+      "Wrote extensive documentation for component usage, composition and pitfalls",
+      "Contributed toward a framework agnostic web component based design system",
+      "Attended several conferences, CSS Day, JSNation & UX London being particular favorites!"
     ]
   },
   {
-    company: "Previous Company",
-    role: "UI Developer",
-    period: "2020 - 2022",
-    description: "Focused on creating responsive, accessible web applications for e-commerce platforms.",
+    company: "Intimation",
+    role: "Contract Developer",
+    period: "2021 - 2021",
+    description: "Briefly worked for a digital agency building WordPress sites.",
     highlights: [
-      "Built custom checkout flows that increased conversion by 25%",
-      "Implemented A/B testing framework for UI experiments",
-      "Led migration from legacy jQuery to modern React architecture",
-      "Established coding standards and review processes"
+      "Worked with designers and stakeholders to build brochure sites from design documents",
     ]
   },
   {
-    company: "Freelance",
-    role: "Web Developer",
-    period: "2018 - 2020",
-    description: "Worked with various clients to deliver custom web solutions and user interfaces.",
+    company: "Fancensus",
+    role: "Junior Backend Developer",
+    period: "2020 - 2021",
+    description: "My first professional role in tech, here I primarily worked with legacy code, refactoring monolithic SQL queries and outdated code into a maintainable structure.",
     highlights: [
-      "Delivered 15+ projects on time and within budget",
-      "Specialized in responsive design and performance optimization",
-      "Built relationships with clients leading to repeat business",
-      "Managed full project lifecycle from concept to deployment"
+      "Improved reliablity and maintainability of several internal tools.",
     ]
   }
 ];
@@ -976,8 +976,14 @@ function App() {
                     },
                   }}
                 >
-                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-
+                <Box
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: '70px 1fr auto', // 👈 fixed icon col
+                    columnGap: 2,
+                    alignItems: 'start',
+                  }}
+                >
                     { job.company === 'Etch' && (
                       <Box
                         component="svg"
@@ -1015,8 +1021,38 @@ function App() {
                       </Box>
                     )}
 
-                    { job.company !== 'Etch' && (
-                      <WorkIcon sx={{ color: 'primary.500', fontSize: 24, mt: 0.5, }} />
+                    { job.company === 'Intimation' && (
+                      <Box sx={{ width: 28, display: 'flex', justifyContent: 'center' }}>
+                        <Box
+                          component="img"
+                          src={intimation}
+                          alt="Intimation"
+                          loading="lazy"
+                          sx={{
+                            height: 48,
+                            width: 48,          
+                            mt: 0.5,
+                            flexShrink: 0,
+                          }}
+                        />
+                      </Box>
+                    )}
+
+                    { job.company === 'Fancensus' && (
+                      <Box sx={{ width: 28, display: 'flex', justifyContent: 'center' }}>
+                        <Box
+                          component="img"
+                          src={fancensus}
+                          alt="Fancensus"
+                          loading="lazy"
+                          sx={{
+                            height: 48,
+                            width: 48,          
+                            mt: 0.5,
+                            flexShrink: 0,
+                          }}
+                        />
+                      </Box>
                     )}
 
                     <Box sx={{ flex: 1 }}>

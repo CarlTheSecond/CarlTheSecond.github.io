@@ -33,7 +33,6 @@ import SpeedIcon from '@mui/icons-material/Speed';
 import ArticleIcon from '@mui/icons-material/Article';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import WorkIcon from '@mui/icons-material/Work';
 import CircleIcon from '@mui/icons-material/Circle';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -63,7 +62,7 @@ const initialMessages: Message[] = [
   { from: 'carl', text: 'I love building component systems that scale and delight users.', delay: 1700 },
   { from: 'user', text: 'That sounds great! What kind of projects have you worked on?', delay: 1500 },
   { from: 'carl', text: "I've built hundreds of complex forms and care about user experience. Each project taught me something new about performance, accessibility, and user experience.", delay: 2000 },
-  { from: 'carl', text: "Most recently though, I've been working at Etch as a front-end developer, building and maintaing several component libraries and turning Figma prototypes into fully realised journeys.", delay: 2400 },
+  { from: 'carl', text: "Most recently though, I've been working at Etch as a front-end developer, building and maintaining several component libraries and turning Figma prototypes into fully realised customer journeys.", delay: 2400 },
 ];
 
 const articleContent: Record<string, ArticleData> = {

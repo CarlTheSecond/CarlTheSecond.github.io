@@ -613,69 +613,97 @@ function App() {
             {isLoading ? (
               <LoadingContent text="Loading articles..." />
             ) : (
-              articlesData?.map((article, idx) => (
-                <Box
-                  key={idx}
-                  onClick={() => handleArticleClick(article)}
-                  sx={{
-                    bgcolor: 'background.surface',
-                    borderRadius: 'lg',
-                    p: 2.5,
-                    boxShadow: 'sm',
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    animation: 'fadeIn 0.4s ease-out',
-                    animationDelay: `${idx * 0.1}s`,
-                    animationFillMode: 'both',
-                    '@keyframes fadeIn': {
-                      from: { opacity: 0, transform: 'translateY(10px)' },
-                      to: { opacity: 1, transform: 'translateY(0)' }
-                    },
-                    '&:hover': {
-                      boxShadow: 'md',
-                      borderColor: 'primary.300',
-                      transform: 'translateY(-2px)',
-                    },
-                  }}
-                >
-                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                    <ArticleIcon 
-                      sx={{ 
-                        color: 'primary.500',
-                        fontSize: 24,
-                        mt: 0.5,
-                      }} 
-                    />
-                    <Box sx={{ flex: 1 }}>
-                      <Typography level="title-md" sx={{ mb: 0.5 }}>
-                        {article.title}
-                      </Typography>
-                      <Typography level="body-sm" sx={{ color: 'text.secondary', mb: 1 }}>
-                        {article.description}
-                      </Typography>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                        <Typography level="body-xs" sx={{ color: 'text.tertiary' }}>
-                          {article.date}
+              articlesData?.map((article, idx) => {
+                const isExternal = article.type === 'external' && !!article.link;
+
+                return (
+                  <Box
+                    key={article.id}
+                    component={isExternal ? 'a' : 'button'}
+                    href={isExternal ? article.link : undefined}
+                    target={isExternal ? '_blank' : undefined}
+                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                    type={!isExternal ? 'button' : undefined}
+                    onClick={!isExternal ? () => handleArticleClick(article) : undefined}
+                    onKeyDown={
+                      !isExternal
+                        ? (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              handleArticleClick(article);
+                            }
+                          }
+                        : undefined
+                    }
+                    aria-label={`${article.title}${isExternal ? ' (opens in new tab)' : ''}`}
+                    sx={{
+                      textAlign: 'left',
+                      width: '100%',
+                      bgcolor: 'background.surface',
+                      borderRadius: 'lg',
+                      p: 2.5,
+                      boxShadow: 'sm',
+                      border: '1px solid',
+                      borderColor: 'divider',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s',
+                      animation: 'fadeIn 0.4s ease-out',
+                      animationDelay: `${idx * 0.1}s`,
+                      animationFillMode: 'both',
+                      '@keyframes fadeIn': {
+                        from: { opacity: 0, transform: 'translateY(10px)' },
+                        to: { opacity: 1, transform: 'translateY(0)' }
+                      },
+                      '&:hover': {
+                        boxShadow: 'md',
+                        borderColor: 'primary.300',
+                        transform: 'translateY(-2px)',
+                      },
+                      // visible keyboard focus
+                      '&:focus-visible': {
+                        outline: '2px solid',
+                        outlineColor: 'primary.500',
+                        outlineOffset: 2,
+                        boxShadow: 'md',
+                      },
+                      // strip native button styles for internal variant
+                      ...(isExternal ? {} : { background: 'none', appearance: 'none' }),
+                    }}
+                  >
+                    <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                      <ArticleIcon
+                        aria-hidden
+                        sx={{ color: 'primary.500', fontSize: 24, mt: 0.5 }}
+                      />
+                      <Box sx={{ flex: 1 }}>
+                        <Typography level="title-md" component="h3" sx={{ mb: 0.5 }}>
+                          {article.title}
                         </Typography>
-                        {article.readTime && (
+                        <Typography level="body-sm" sx={{ color: 'text.secondary', mb: 1 }}>
+                          {article.description}
+                        </Typography>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                           <Typography level="body-xs" sx={{ color: 'text.tertiary' }}>
-                            {article.readTime}
+                            {article.date}
                           </Typography>
-                        )}
+                          {article.readTime && (
+                            <Typography level="body-xs" sx={{ color: 'text.tertiary' }}>
+                              {article.readTime}
+                            </Typography>
+                          )}
+                        </Box>
                       </Box>
+
+                      {isExternal && (
+                        <OpenInNewIcon
+                          aria-hidden
+                          sx={{ fontSize: 16, color: 'text.tertiary', mt: 0.5 }}
+                        />
+                      )}
                     </Box>
-                    <OpenInNewIcon 
-                      sx={{ 
-                        fontSize: 16, 
-                        color: 'text.tertiary',
-                        mt: 0.5,
-                      }} 
-                    />
                   </Box>
-                </Box>
-              ))
+                );
+              })
             )}
           </Box>
         )}

@@ -979,7 +979,7 @@ function App() {
                 <Box
                   sx={{
                     display: 'grid',
-                    gridTemplateColumns: '70px 1fr auto', // 👈 fixed icon col
+                    gridTemplateColumns: '70px 1fr auto',
                     columnGap: 2,
                     alignItems: 'start',
                   }}
@@ -1022,7 +1022,7 @@ function App() {
                     )}
 
                     { job.company === 'Intimation' && (
-                      <Box sx={{ width: 28, display: 'flex', justifyContent: 'center' }}>
+                      <Box sx={{ width: 48, display: 'flex', justifyContent: 'center' }}>
                         <Box
                           component="img"
                           src={intimation}
@@ -1039,7 +1039,7 @@ function App() {
                     )}
 
                     { job.company === 'Fancensus' && (
-                      <Box sx={{ width: 28, display: 'flex', justifyContent: 'center' }}>
+                      <Box sx={{ width: 48, display: 'flex', justifyContent: 'center' }}>
                         <Box
                           component="img"
                           src={fancensus}

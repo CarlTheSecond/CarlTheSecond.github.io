@@ -25,8 +25,7 @@ type Message = {
 
 import type { Article, ArticleData, InternalArticleMeta, ExternalArticleMeta } from './types/article';
 import { useEffect, useState, useRef } from 'react';
-import { Box, Typography, Avatar, Button, Chip, IconButton, Divider } from '@mui/joy';
-import SendIcon from '@mui/icons-material/Send';
+import { Box, Typography, Avatar, Button, Chip, IconButton } from '@mui/joy';
 import CodeIcon from '@mui/icons-material/Code';
 import BrushIcon from '@mui/icons-material/Brush';
 import SpeedIcon from '@mui/icons-material/Speed';
@@ -46,6 +45,7 @@ import fancensus from './assets/fancensuscom_logo.jpg';
 import { generativeDesignSystem } from './articles/generative-design-system';
 import { maintainableCode } from './articles/maintainable-code';
 import { universalComponents } from './articles/universal-components';
+import { beyondComponentLibraries } from './articles/beyond-component-libraries';
 
 const initialMessages: Message[] = [
   { from: 'carl', text: "Hey, I'm Carl 👋", delay: 1000 },
@@ -66,12 +66,14 @@ const initialMessages: Message[] = [
 ];
 
 const articleContent: Record<string, ArticleData> = {
+  [beyondComponentLibraries.meta.id]: beyondComponentLibraries,
   [generativeDesignSystem.meta.id]: generativeDesignSystem,
   [maintainableCode.meta.id]: maintainableCode,
   [universalComponents.meta.id]: universalComponents,
 };
 
 const internalMetas: InternalArticleMeta[] = [
+  beyondComponentLibraries.meta,
   generativeDesignSystem.meta,
   universalComponents.meta,
   maintainableCode.meta,
